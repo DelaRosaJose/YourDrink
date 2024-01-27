@@ -3,6 +3,7 @@
     x:Class="YourDrink.Views.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Models="clr-namespace:YourDrink.Models"
     xmlns:ViewModels="clr-namespace:YourDrink.ViewModels"
     Title="Drinks"
     x:DataType="ViewModels:MainViewModel"
@@ -17,7 +18,7 @@
                 FontSize="22"
                 Text="Category" />
 
-            <CarouselView
+            <!--<CarouselView
                 ItemsSource="{Binding Categories}"
                 Loop="False"
                 PeekAreaInsets="140"
@@ -27,7 +28,7 @@
                     <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
                 </CarouselView.ItemsLayout>
                 <CarouselView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="Models:Category">
                         <StackLayout>
                             <Frame
                                 Padding="5,20"
@@ -38,7 +39,6 @@
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                                 </Frame.GestureRecognizers>
-                                <!--<StackLayout>-->
                                 <Label
                                     FontAttributes="Bold"
                                     HeightRequest="35"
@@ -47,20 +47,110 @@
                                     Text="{Binding Nombre}"
                                     VerticalOptions="Center"
                                     VerticalTextAlignment="Center" />
-
-                                <!--</StackLayout>-->
                             </Frame>
                         </StackLayout>
-                        <!--<Label
-                            FontAttributes="Bold"
-                            FontSize="18"
-                            HorizontalOptions="Center"
-                            Text="{Binding Nombre}"
-                            VerticalOptions="Center" />-->
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
-            </CarouselView>
+            </CarouselView>-->
 
+            <CollectionView ItemsSource="{Binding Categories}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Models:Category">
+                        <ContentView>
+                            <Frame
+                                Margin="0"
+                                Padding="15"
+                                BackgroundColor="#dfdbf2"
+                                CornerRadius="14">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Category_Tapped" />
+                                </Frame.GestureRecognizers>
+                                <!--<Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>-->
+
+                                <Label
+                                    FontAttributes="Bold"
+                                    HeightRequest="37"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Nombre}"
+                                    VerticalTextAlignment="Center"
+                                    WidthRequest="80" />
+                                <!--</Grid>-->
+                            </Frame>
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="22"
+                Text="Drinks" />
+
+            <CollectionView ItemsSource="{Binding Cocktails}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Models:Cocktail">
+                        <ContentView>
+                            <Frame
+                                Margin="10"
+                                BackgroundColor="#2b2b2b"
+                                CornerRadius="14">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--<Ellipse
+                                        Grid.RowSpan="2"
+                                        Margin="0,0,10,0"
+                                        Fill=" WhiteSmoke"
+                                        HeightRequest="60"
+                                        HorizontalOptions="Start"
+                                        Stroke=" White"
+                                        StrokeThickness="1"
+                                        WidthRequest="60" />-->
+
+                                    <Image
+                                        Grid.RowSpan="2"
+                                        Margin="0,0,10,0"
+                                        HeightRequest="60"
+                                        HorizontalOptions="Start"
+                                        Source="{Binding Image}"
+                                        WidthRequest="60" />
+                                    <Label
+                                        Grid.Column="1"
+                                        FontAttributes="Bold"
+                                        Text="{Binding Name}"
+                                        TextColor=" White" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        FontAttributes="Italic"
+                                        Text="{Binding Category}"
+                                        TextColor=" White"
+                                        VerticalOptions="End" />
+                                </Grid>
+                            </Frame>
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
 
         </VerticalStackLayout>

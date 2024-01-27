@@ -13,9 +13,10 @@
         public string UrlSearchCocktailByLetter(string Letter) => $"{BaseUrl}search.php?f={Letter}";
         public string UrlSearchIngredientByName(string Name) => $"{BaseUrl}search.php?i={Name}";
         public string UrlSearchCocktailById(string Id) => $"{BaseUrl}lookup.php?i={Id}";
+        public string UrlSearchCocktailByCategory(string Category) => $"{BaseUrl}filter.php?c={Category}";
         public string UrlSearchRandomCocktail => $"{BaseUrl}random.php";
-        public string UrlSearchCocktailByIng5redient(string Ingredient) => $"{BaseUrl}filter.php?i={Ingredient}";
-        public string UrlGetCategory => $"{BaseUrl}list.php?c=list";
+        public string UrlSearchCocktailByIngredient(string Ingredient) => $"{BaseUrl}filter.php?i={Ingredient}";
+        public string UrlGetCategories => $"{BaseUrl}list.php?c=list";
 
 
         public async Task<string> HttpPetition(string strUrl)

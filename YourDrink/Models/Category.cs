@@ -6,9 +6,9 @@ namespace YourDrink.Models;
 public class DrinkCategories
 {
     [JsonProperty("drinks")]
-    public List<Category> Drinks { get; set; }
+    public List<Category> Categories { get; set; }
 }
-public partial class Category: BaseModel<Category>
+public partial class Category : BaseModel<Category>
 {
 
     [ObservableProperty, JsonProperty("strCategory")]
