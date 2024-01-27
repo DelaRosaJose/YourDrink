@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using YourDrink.Services;
 using CommunityToolkit.Maui;
 
 namespace YourDrink
@@ -19,6 +20,11 @@ namespace YourDrink
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+            builder
+                .RegisterAppServices()
+                .RegisterViewModels()
+                .RegisterViews();
+
             return builder.Build();
         }
     }
