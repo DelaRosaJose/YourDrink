@@ -63,7 +63,7 @@
                             <Frame
                                 Margin="0"
                                 Padding="15"
-                                BackgroundColor="#dfdbf2"
+                                BackgroundColor="#ecefff"
                                 CornerRadius="14">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="Category_Tapped" />
@@ -98,53 +98,30 @@
                 FontSize="22"
                 Text="Drinks" />
 
-            <CollectionView ItemsSource="{Binding Cocktails}">
+            <CollectionView
+                Margin="-5,0"
+                ItemsLayout="VerticalGrid, 2"
+                ItemsSource="{Binding Cocktails}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="Models:Cocktail">
                         <ContentView>
                             <Frame
-                                Margin="10"
-                                BackgroundColor="#2b2b2b"
+                                Margin="5"
+                                Padding="0"
+                                BorderColor="Transparent"
                                 CornerRadius="14">
                                 <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
+                                    <Image Aspect="Fill" Source="{Binding Image}" />
+                                    <Grid BackgroundColor="#80000000" VerticalOptions="End">
+                                        <Label
+                                            Margin="0,0,0,5"
+                                            FontAttributes="Bold"
+                                            FontSize="Subtitle"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{Binding Name}"
+                                            TextColor="WhiteSmoke" />
+                                    </Grid>
 
-                                    <!--<Ellipse
-                                        Grid.RowSpan="2"
-                                        Margin="0,0,10,0"
-                                        Fill=" WhiteSmoke"
-                                        HeightRequest="60"
-                                        HorizontalOptions="Start"
-                                        Stroke=" White"
-                                        StrokeThickness="1"
-                                        WidthRequest="60" />-->
-
-                                    <Image
-                                        Grid.RowSpan="2"
-                                        Margin="0,0,10,0"
-                                        HeightRequest="60"
-                                        HorizontalOptions="Start"
-                                        Source="{Binding Image}"
-                                        WidthRequest="60" />
-                                    <Label
-                                        Grid.Column="1"
-                                        FontAttributes="Bold"
-                                        Text="{Binding Name}"
-                                        TextColor=" White" />
-                                    <Label
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        FontAttributes="Italic"
-                                        Text="{Binding Category}"
-                                        TextColor=" White"
-                                        VerticalOptions="End" />
                                 </Grid>
                             </Frame>
                         </ContentView>
