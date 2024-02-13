@@ -3,11 +3,11 @@ using Newtonsoft.Json;
 using YourDrink.Models.Base;
 
 namespace YourDrink.Models;
-public class DrinkCategories
-{
-    [JsonProperty("drinks")]
-    public List<Category> Categories { get; set; }
-}
+//public class DrinkCategories
+//{
+//    [JsonProperty("drinks")]
+//    public List<Category> Categories { get; set; }
+//}
 public partial class Category : BaseModel<Category>
 {
 

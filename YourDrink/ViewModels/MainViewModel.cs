@@ -21,11 +21,15 @@ public partial class MainViewModel : ObservableObject
 
         Task.Run(async () =>
         {
-            var _CategoriesData =  httpService.HttpPetition(httpService.UrlGetCategories);
-            var _DrinksData =  httpService.HttpPetition(httpService.UrlSearchCocktailByLetter("a"));
+            var _CategoriesData = await httpService.GetAsync<Category.Drinks>(httpService.UrlGetCategories);
+            Categories = _CategoriesData.drinks;
 
-            Categories = JsonConvert.DeserializeObject<DrinkCategories>(await _CategoriesData)?.Categories;
-            Cocktails = JsonConvert.DeserializeObject<DrinkCocktails>(await _DrinksData)?.Cocktails;
+
+            var _DrinksData = await httpService.GetAsync<Cocktail.Drinks>(httpService.UrlSearchCocktailByLetter("a"));
+
+            //Categories = JsonConvert.DeserializeObject<DrinkCategories>(await _CategoriesData)?.Categories;
+            //var sss = JsonConvert.DeserializeObject<Cocktail.Drinks>(await _DrinksData);
+            Cocktails = _DrinksData.drinks;
         }).Wait();
     }
 
@@ -33,8 +37,10 @@ public partial class MainViewModel : ObservableObject
     async Task SearchByCategory(string _category)
     {
 
-        var _DrinksData = await httpService.HttpPetition(httpService.UrlSearchCocktailByCategory(_category));
-        Cocktails = JsonConvert.DeserializeObject<DrinkCocktails>(_DrinksData)?.Cocktails;
+        //var _DrinksData = await httpService.HttpPetition(httpService.UrlSearchCocktailByCategory(_category));
+
+        var _DrinksData = await httpService.GetAsync<Cocktail.Drinks>(httpService.UrlSearchCocktailByCategory(_category));
+        Cocktails = _DrinksData.drinks;
 
     }
 }

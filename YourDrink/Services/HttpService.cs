@@ -1,9 +1,15 @@
-﻿namespace YourDrink.Services
+﻿using MonkeyCache.FileStore;
+using Newtonsoft.Json;
+using System.Net.Http.Json;
+
+namespace YourDrink.Services
 {
     public class HttpService
     {
-        public HttpService()
+        readonly IConnectivity connectivity;
+        public HttpService(IConnectivity connectivity)
         {
+            this.connectivity = connectivity;
             httpClientcli = new HttpClient();
         }
         private const string BaseUrl = "https://www.thecocktaildb.com/api/json/v1/1/";
@@ -19,11 +25,41 @@
         public string UrlGetCategories => $"{BaseUrl}list.php?c=list";
 
 
-        public async Task<string> HttpPetition(string strUrl)
+        //public async Task<string> HttpPetition(string strUrl)
+        //{
+        //    //var Url = new Uri(string.Format(strUrl, string.Empty));
+        //    var Request = await httpClientcli.GetAsync(new Uri(strUrl));
+        //    return await Request.Content.ReadAsStringAsync();
+        //}
+
+        public async Task<T> GetAsync<T>(string url, double days = 7, bool forceRefresh = false)
         {
-            //var Url = new Uri(string.Format(strUrl, string.Empty));
-            var Request = await httpClientcli.GetAsync(new Uri(strUrl));
-            return await Request.Content.ReadAsStringAsync();
+            if (connectivity.NetworkAccess != NetworkAccess.Internet)
+                return Barrel.Current.Get<T>(url);
+
+            if (!forceRefresh && !Barrel.Current.IsExpired(url))
+                return Barrel.Current.Get<T>(url);
+
+            try
+            {
+                
+                var request = await httpClientcli.GetAsync(new Uri(url));
+                var response = request.Content.ReadAsStringAsync();
+
+                T result = JsonConvert.DeserializeObject<T>(await response);
+                
+                if (result != null)
+                Barrel.Current.Add(url, result, TimeSpan.FromDays(days));
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unable to get information from server {ex}");
+            }
+
+            return default;
         }
+
+
     }
 }
