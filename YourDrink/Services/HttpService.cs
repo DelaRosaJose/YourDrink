@@ -12,7 +12,7 @@ namespace YourDrink.Services
             this.connectivity = connectivity;
             httpClientcli = new HttpClient();
         }
-        private const string BaseUrl = "https://www.thecocktaildb.com/api/json/v1/1/";
+        private const string BaseUrl = "https://www.thecocktaildb.com/api/json/v2/1/";
         readonly HttpClient httpClientcli; 
 
         public string UrlSearchCocktailByName(string Name) => $"{BaseUrl}search.php?s={Name}";
@@ -23,6 +23,8 @@ namespace YourDrink.Services
         public string UrlSearchRandomCocktail => $"{BaseUrl}random.php";
         public string UrlSearchCocktailByIngredient(string Ingredient) => $"{BaseUrl}filter.php?i={Ingredient}";
         public string UrlGetCategories => $"{BaseUrl}list.php?c=list";
+        public string UrlGetMostPopulars => $"{BaseUrl}popular.php";
+        public string UrlGetLastests => $"{BaseUrl}latest.php";
 
 
         //public async Task<string> HttpPetition(string strUrl)

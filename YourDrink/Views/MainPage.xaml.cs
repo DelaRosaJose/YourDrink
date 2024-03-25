@@ -13,9 +13,12 @@ public partial class MainPage : ContentPage
 
 
 
-    private void Category_Tapped(object sender, TappedEventArgs e)
-    {
-        var value = ((Label)((Frame)sender).Content).Text;
-        _ViewModel.SearchByCategoryCommand.Execute(value);
-    }
+    //private void Category_Tapped(object sender, TappedEventArgs e)
+    //{
+    //    Task.Run(() =>
+    //    {
+    //        var value = ((Label)((Frame)sender).Content).Text;
+    //        _ViewModel.SearchByCategoryCommand.Execute(value);
+    //    }).Wait();
+    //}
 }

@@ -8,17 +8,17 @@
     Title="Drinks"
     x:DataType="ViewModels:MainViewModel"
     Shell.NavBarIsVisible="False">
+    <!--#region LAst code-->
+    <!--<ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">-->
+    <!--<SearchBar />-->
 
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
-            <!--<SearchBar />-->
-
-            <Label
+    <!--<Label
                 FontAttributes="Bold"
                 FontSize="22"
-                Text="Category" />
+                Text="Category" />-->
 
-            <!--<CarouselView
+    <!--<CarouselView
                 ItemsSource="{Binding Categories}"
                 Loop="False"
                 PeekAreaInsets="140"
@@ -53,7 +53,7 @@
                 </CarouselView.ItemTemplate>
             </CarouselView>-->
 
-            <CollectionView ItemsSource="{Binding Categories}">
+    <!--<CollectionView ItemsSource="{Binding Categories}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
                 </CollectionView.ItemsLayout>
@@ -68,7 +68,8 @@
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="Category_Tapped" />
                                 </Frame.GestureRecognizers>
-                                <!--<Grid>
+    -->
+    <!--<Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
@@ -77,6 +78,7 @@
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>-->
+    <!--
 
                                 <Label
                                     FontAttributes="Bold"
@@ -85,15 +87,17 @@
                                     Text="{Binding Nombre}"
                                     VerticalTextAlignment="Center"
                                     WidthRequest="80" />
-                                <!--</Grid>-->
+    -->
+    <!--</Grid>-->
+    <!--
                             </Frame>
                         </ContentView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-            </CollectionView>
+            </CollectionView>-->
 
 
-            <Label
+    <!--<Label
                 FontAttributes="Bold"
                 FontSize="22"
                 Text="Drinks" />
@@ -101,7 +105,7 @@
             <CollectionView
                 Margin="-5,0"
                 ItemsLayout="VerticalGrid, 2"
-                ItemsSource="{Binding Cocktails}">
+                ItemsSource="{Binding Cocktails, Mode=TwoWay}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="Models:Cocktail">
                         <ContentView>
@@ -111,7 +115,11 @@
                                 BorderColor="Transparent"
                                 CornerRadius="14">
                                 <Grid>
-                                    <Image Aspect="Fill" Source="{Binding Image}" />
+                                    <Image
+                                        Aspect="Fill"
+                                        HeightRequest="50"
+                                        Source="{Binding Image}"
+                                        WidthRequest="50" />
                                     <Grid BackgroundColor="#80000000" VerticalOptions="End">
                                         <Label
                                             Margin="0,0,0,5"
@@ -131,6 +139,103 @@
 
 
         </VerticalStackLayout>
-    </ScrollView>
+    </ScrollView>-->
+    <!--#endregion-->
+
+    <!--  #Good code  -->
+    <!--#endregion-->
+
+    <Grid Padding="10" RowDefinitions="50,auto,*,auto,*">
+        <Label
+            Margin="-10,-10,-10,10"
+            BackgroundColor="lightGray"
+            FontAttributes="Bold"
+            FontSize="22" />
+
+        <Label
+            Grid.Row="1"
+            FontAttributes="Bold"
+            FontSize="22"
+            Text="Most Popular" />
+
+
+        <CollectionView
+            Grid.Row="2"
+            ItemsLayout="HorizontalGrid, 2"
+            ItemsSource="{Binding MostPopulars, Mode=TwoWay}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Models:Cocktail">
+                    <ContentView>
+                        <Frame
+                            Margin="5"
+                            Padding="0"
+                            BorderColor="Transparent"
+                            CornerRadius="14">
+                            <Grid>
+                                <Image
+                                    Aspect="Fill"
+                                    HeightRequest="160"
+                                    Source="{Binding Image}"
+                                    WidthRequest="170" />
+                                <Grid BackgroundColor="#80000000" VerticalOptions="End">
+                                    <Label
+                                        Margin="0,0,0,5"
+                                        FontAttributes="Bold"
+                                        FontSize="Subtitle"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Name}"
+                                        TextColor="WhiteSmoke" />
+                                </Grid>
+
+                            </Grid>
+                        </Frame>
+                    </ContentView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label
+            Grid.Row="3"
+            FontAttributes="Bold"
+            FontSize="22"
+            Text="Most Popular" />
+
+
+        <CollectionView
+            Grid.Row="4"
+            ItemsLayout="HorizontalGrid, 2"
+            ItemsSource="{Binding MostPopulars, Mode=TwoWay}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Models:Cocktail">
+                    <ContentView>
+                        <Frame
+                            Margin="5"
+                            Padding="0"
+                            BorderColor="Transparent"
+                            CornerRadius="14">
+                            <Grid>
+                                <Image
+                                    Aspect="Fill"
+                                    HeightRequest="160"
+                                    Source="{Binding Image}"
+                                    WidthRequest="170" />
+                                <Grid BackgroundColor="#80000000" VerticalOptions="End">
+                                    <Label
+                                        Margin="0,0,0,5"
+                                        FontAttributes="Bold"
+                                        FontSize="Subtitle"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Name}"
+                                        TextColor="WhiteSmoke" />
+                                </Grid>
+
+                            </Grid>
+                        </Frame>
+                    </ContentView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
 
 </ContentPage>

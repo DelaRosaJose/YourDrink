@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="YourDrink.Widgets.ColletionDrinks"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Models="clr-namespace:YourDrink.Models">
+    <CollectionView
+        Grid.Row="4"
+        ItemsLayout="HorizontalGrid, 2"
+        ItemsSource="{Binding MostPopulars, Mode=TwoWay}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="Models:Cocktail">
+                <ContentView>
+                    <Frame
+                        Margin="5"
+                        Padding="0"
+                        BorderColor="Transparent"
+                        CornerRadius="14">
+                        <Grid>
+                            <Image
+                                Aspect="Fill"
+                                HeightRequest="160"
+                                Source="{Binding Image}"
+                                WidthRequest="170" />
+                            <Grid BackgroundColor="#80000000" VerticalOptions="End">
+                                <Label
+                                    Margin="0,0,0,5"
+                                    FontAttributes="Bold"
+                                    FontSize="Subtitle"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Name}"
+                                    TextColor="WhiteSmoke" />
+                            </Grid>
+
+                        </Grid>
+                    </Frame>
+                </ContentView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentView>

@@ -1,46 +1,42 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System.Collections.ObjectModel;
 using YourDrink.Models;
 using YourDrink.Services;
 
 namespace YourDrink.ViewModels;
 public partial class MainViewModel : ObservableObject
 {
-    [ObservableProperty]
-    List<Category>? _categories;
+    //[ObservableProperty]
+    //List<Category>? _categories;
 
     [ObservableProperty]
-    List<Cocktail>? _Cocktails;
+    ObservableCollection<Cocktail>? _MostPopulars;
 
     readonly HttpService httpService;
-    public MainViewModel(HttpService httpService) 
+    public MainViewModel(HttpService httpService)
     {
         this.httpService = httpService;
 
         Task.Run(async () =>
         {
-            var _CategoriesData = await httpService.GetAsync<Category.Drinks>(httpService.UrlGetCategories);
-            Categories = _CategoriesData.drinks;
 
+            var _DrinksPopularsData = await httpService.GetAsync<Cocktail.Drinks>(httpService.UrlGetMostPopulars);
+            _MostPopulars = new ObservableCollection<Cocktail>(_DrinksPopularsData.drinks);
 
-            var _DrinksData = await httpService.GetAsync<Cocktail.Drinks>(httpService.UrlSearchCocktailByLetter("a"));
-
-            //Categories = JsonConvert.DeserializeObject<DrinkCategories>(await _CategoriesData)?.Categories;
-            //var sss = JsonConvert.DeserializeObject<Cocktail.Drinks>(await _DrinksData);
-            Cocktails = _DrinksData.drinks;
         }).Wait();
     }
 
-    [RelayCommand]
-    async Task SearchByCategory(string _category)
-    {
+    //[RelayCommand]
+    //async Task SearchByCategory(string _category)
+    //{
 
-        //var _DrinksData = await httpService.HttpPetition(httpService.UrlSearchCocktailByCategory(_category));
+    //    //var _DrinksData = await httpService.HttpPetition(httpService.UrlSearchCocktailByCategory(_category));
 
-        var _DrinksData = await httpService.GetAsync<Cocktail.Drinks>(httpService.UrlSearchCocktailByCategory(_category));
-        Cocktails = _DrinksData.drinks;
+    //    var _DrinksData = await httpService.GetAsync<Cocktail.Drinks>(httpService.UrlSearchCocktailByCategory(_category));
+    //    //Cocktails.Clear();
+    //    //Device.
+    //    Cocktails = new ObservableCollection<Cocktail>(_DrinksData.drinks);
+    //    //Cocktails = _DrinksData.drinks;
 
-    }
+    //}
 }
