@@ -162,34 +162,36 @@
         <CollectionView
             Grid.Row="2"
             ItemsLayout="HorizontalGrid, 2"
-            ItemsSource="{Binding MostPopulars, Mode=TwoWay}">
+            ItemsSource="{Binding MostPopulars, Mode=OneTime}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="Models:Cocktail">
-                    <ContentView>
-                        <Frame
-                            Margin="5"
-                            Padding="0"
-                            BorderColor="Transparent"
-                            CornerRadius="14">
-                            <Grid>
-                                <Image
-                                    Aspect="Fill"
-                                    HeightRequest="160"
-                                    Source="{Binding Image}"
-                                    WidthRequest="170" />
-                                <Grid BackgroundColor="#80000000" VerticalOptions="End">
-                                    <Label
-                                        Margin="0,0,0,5"
-                                        FontAttributes="Bold"
-                                        FontSize="Subtitle"
-                                        HorizontalTextAlignment="Center"
-                                        Text="{Binding Name}"
-                                        TextColor="WhiteSmoke" />
-                                </Grid>
-
+                    <Frame
+                        Margin="5"
+                        Padding="0"
+                        BorderColor="Transparent"
+                        CornerRadius="14"
+                        HeightRequest="135"
+                        WidthRequest="170">
+                        <Grid>
+                            <Image
+                                Aspect="Center"
+                                HeightRequest="135"
+                                WidthRequest="170">
+                                <Image.Source>
+                                    <UriImageSource CacheValidity="7:00:00:00" Uri="{Binding Image, Mode=OneTime}" />
+                                </Image.Source>
+                            </Image>
+                            <Grid BackgroundColor="#80000000" VerticalOptions="End">
+                                <Label
+                                    Margin="0,0,0,5"
+                                    FontAttributes="Bold"
+                                    FontSize="Subtitle"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Name, Mode=OneTime}"
+                                    TextColor="WhiteSmoke" />
                             </Grid>
-                        </Frame>
-                    </ContentView>
+                        </Grid>
+                    </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
@@ -198,43 +200,46 @@
             Grid.Row="3"
             FontAttributes="Bold"
             FontSize="22"
-            Text="Most Popular" />
-
+            Text="Lastest" />
 
         <CollectionView
             Grid.Row="4"
             ItemsLayout="HorizontalGrid, 2"
-            ItemsSource="{Binding MostPopulars, Mode=TwoWay}">
+            ItemsSource="{Binding Lastest, Mode=OneTime}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="Models:Cocktail">
-                    <ContentView>
-                        <Frame
-                            Margin="5"
-                            Padding="0"
-                            BorderColor="Transparent"
-                            CornerRadius="14">
-                            <Grid>
-                                <Image
-                                    Aspect="Fill"
-                                    HeightRequest="160"
-                                    Source="{Binding Image}"
-                                    WidthRequest="170" />
-                                <Grid BackgroundColor="#80000000" VerticalOptions="End">
-                                    <Label
-                                        Margin="0,0,0,5"
-                                        FontAttributes="Bold"
-                                        FontSize="Subtitle"
-                                        HorizontalTextAlignment="Center"
-                                        Text="{Binding Name}"
-                                        TextColor="WhiteSmoke" />
-                                </Grid>
-
+                    <Frame
+                        Margin="5"
+                        Padding="0"
+                        BorderColor="Transparent"
+                        CornerRadius="14"
+                        HeightRequest="135"
+                        WidthRequest="170">
+                        <Grid>
+                            <Image
+                                Aspect="Center"
+                                HeightRequest="135"
+                                WidthRequest="170">
+                                <Image.Source>
+                                    <UriImageSource CacheValidity="7:00:00:00" Uri="{Binding Image, Mode=OneTime}" />
+                                </Image.Source>
+                            </Image>
+                            <Grid BackgroundColor="#80000000" VerticalOptions="End">
+                                <Label
+                                    Margin="0,0,0,5"
+                                    FontAttributes="Bold"
+                                    FontSize="Subtitle"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Name, Mode=OneTime}"
+                                    TextColor="WhiteSmoke" />
                             </Grid>
-                        </Frame>
-                    </ContentView>
+                        </Grid>
+                    </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+
 
     </Grid>
 

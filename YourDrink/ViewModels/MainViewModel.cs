@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using YourDrink.Models;
 using YourDrink.Services;
@@ -12,6 +13,9 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty]
     ObservableCollection<Cocktail>? _MostPopulars;
 
+    [ObservableProperty]
+    ObservableCollection<Cocktail>? _Lastest;
+
     readonly HttpService httpService;
     public MainViewModel(HttpService httpService)
     {
@@ -19,12 +23,19 @@ public partial class MainViewModel : ObservableObject
 
         Task.Run(async () =>
         {
+            var _DrinksPopularsRequest = httpService.GetAsync<Cocktail.Drinks>(httpService.UrlGetMostPopulars);
+            var _DrinksLastestsRequest = httpService.GetAsync<Cocktail.Drinks>(httpService.UrlGetLastests);
 
-            var _DrinksPopularsData = await httpService.GetAsync<Cocktail.Drinks>(httpService.UrlGetMostPopulars);
-            _MostPopulars = new ObservableCollection<Cocktail>(_DrinksPopularsData.drinks);
+            var popularData = await _DrinksPopularsRequest;
+            var lastestData = await _DrinksLastestsRequest;
+
+            _MostPopulars = new ObservableCollection<Cocktail>(popularData.drinks);
+            _Lastest = new ObservableCollection<Cocktail>(lastestData.drinks);
 
         }).Wait();
+
     }
+
 
     //[RelayCommand]
     //async Task SearchByCategory(string _category)

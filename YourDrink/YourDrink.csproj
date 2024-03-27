@@ -57,6 +57,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Widgets\**" />
+	  <Compile Remove="Widgets\**" />
+	  <EmbeddedResource Remove="Widgets\**" />
+	  <MauiCss Remove="Widgets\**" />
+	  <MauiXaml Remove="Widgets\**" />
+	  <None Remove="Widgets\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.6" />
