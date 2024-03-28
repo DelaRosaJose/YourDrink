@@ -8,187 +8,84 @@
     Title="Drinks"
     x:DataType="ViewModels:MainViewModel"
     Shell.NavBarIsVisible="False">
-    <!--#region LAst code-->
-    <!--<ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">-->
-    <!--<SearchBar />-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="CollectionView">
+                <Setter Property="ItemsLayout" Value="{OnIdiom 'HorizontalGrid, 2', Tablet='HorizontalGrid, 3'}" />
+            </Style>
+            <Style TargetType="Frame">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="0" />
+                <!--<Setter Property="BorderColor" Value="Gray" />-->
+                <Setter Property="CornerRadius" Value="14" />
+                <Setter Property="HeightRequest" Value="118" />
+                <Setter Property="WidthRequest" Value="140" />
+            </Style>
+            <Style TargetType="Image">
+                <Setter Property="Aspect" Value="Center" />
+                <Setter Property="HeightRequest" Value="118" />
+                <Setter Property="WidthRequest" Value="140" />
+            </Style>
+            <Style x:Key="GridTitle" TargetType="Grid">
+                <Setter Property="BackgroundColor" Value="#80000000" />
+                <Setter Property="VerticalOptions" Value="End" />
+            </Style>
+            <Style x:Key="LabelTitle" TargetType="Label">
+                <Setter Property="Margin" Value="0,0,0,5" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="Subtitle" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="WhiteSmoke" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-    <!--<Label
-                FontAttributes="Bold"
-                FontSize="22"
-                Text="Category" />-->
-
-    <!--<CarouselView
-                ItemsSource="{Binding Categories}"
-                Loop="False"
-                PeekAreaInsets="140"
-                Position="2">
-                <CarouselView.ItemsLayout>
-
-                    <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
-                </CarouselView.ItemsLayout>
-                <CarouselView.ItemTemplate>
-                    <DataTemplate x:DataType="Models:Category">
-                        <StackLayout>
-                            <Frame
-                                Padding="5,20"
-                                BackgroundColor="#dfdbf2"
-                                BorderColor="#dfdbf2"
-                                CornerRadius="10"
-                                HasShadow="True">
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                                </Frame.GestureRecognizers>
-                                <Label
-                                    FontAttributes="Bold"
-                                    HeightRequest="35"
-                                    HorizontalOptions="Center"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{Binding Nombre}"
-                                    VerticalOptions="Center"
-                                    VerticalTextAlignment="Center" />
-                            </Frame>
-                        </StackLayout>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>-->
-
-    <!--<CollectionView ItemsSource="{Binding Categories}">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="Models:Category">
-                        <ContentView>
-                            <Frame
-                                Margin="0"
-                                Padding="15"
-                                BackgroundColor="#ecefff"
-                                CornerRadius="14">
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="Category_Tapped" />
-                                </Frame.GestureRecognizers>
-    -->
-    <!--<Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>-->
-    <!--
-
-                                <Label
-                                    FontAttributes="Bold"
-                                    HeightRequest="37"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{Binding Nombre}"
-                                    VerticalTextAlignment="Center"
-                                    WidthRequest="80" />
-    -->
-    <!--</Grid>-->
-    <!--
-                            </Frame>
-                        </ContentView>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>-->
-
-
-    <!--<Label
-                FontAttributes="Bold"
-                FontSize="22"
-                Text="Drinks" />
-
-            <CollectionView
-                Margin="-5,0"
-                ItemsLayout="VerticalGrid, 2"
-                ItemsSource="{Binding Cocktails, Mode=TwoWay}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="Models:Cocktail">
-                        <ContentView>
-                            <Frame
-                                Margin="5"
-                                Padding="0"
-                                BorderColor="Transparent"
-                                CornerRadius="14">
-                                <Grid>
-                                    <Image
-                                        Aspect="Fill"
-                                        HeightRequest="50"
-                                        Source="{Binding Image}"
-                                        WidthRequest="50" />
-                                    <Grid BackgroundColor="#80000000" VerticalOptions="End">
-                                        <Label
-                                            Margin="0,0,0,5"
-                                            FontAttributes="Bold"
-                                            FontSize="Subtitle"
-                                            HorizontalTextAlignment="Center"
-                                            Text="{Binding Name}"
-                                            TextColor="WhiteSmoke" />
-                                    </Grid>
-
-                                </Grid>
-                            </Frame>
-                        </ContentView>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
-
-        </VerticalStackLayout>
-    </ScrollView>-->
-    <!--#endregion-->
-
-    <!--  #Good code  -->
-    <!--#endregion-->
-
-    <Grid Padding="10" RowDefinitions="50,auto,*,auto,*">
-        <Label
+    <Grid
+        Padding="10,0"
+        RowDefinitions="auto,auto,*,auto,*"
+        RowSpacing="5">
+        <!--<Label
             Margin="-10,-10,-10,10"
             BackgroundColor="lightGray"
             FontAttributes="Bold"
-            FontSize="22" />
+            FontSize="22" />-->
+        <SearchBar HorizontalOptions="Start" />
 
-        <Label
-            Grid.Row="1"
-            FontAttributes="Bold"
-            FontSize="22"
-            Text="Most Popular" />
+        <Grid Grid.Row="1" RowDefinitions="38,1">
+            <Label
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="Most Popular"
+                TextColor="{StaticResource NavBar}" />
+            <Line
+                Grid.Row="1"
+                Stroke="{StaticResource NavBar}"
+                X1="200" />
+            <Line
+                Grid.Row="1"
+                Stroke="{StaticResource NavBar}"
+                TranslationY="2.1"
+                X1="200" />
+            <Line
+                Grid.Row="1"
+                Stroke="{StaticResource NavBar}"
+                TranslationY="3"
+                X1="200" />
+        </Grid>
 
 
-        <CollectionView
-            Grid.Row="2"
-            ItemsLayout="HorizontalGrid, 2"
-            ItemsSource="{Binding MostPopulars, Mode=OneTime}">
+        <CollectionView Grid.Row="2" ItemsSource="{Binding MostPopulars, Mode=OneTime}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="Models:Cocktail">
-                    <Frame
-                        Margin="5"
-                        Padding="0"
-                        BorderColor="Transparent"
-                        CornerRadius="14"
-                        HeightRequest="135"
-                        WidthRequest="170">
+                    <Frame>
                         <Grid>
-                            <Image
-                                Aspect="Center"
-                                HeightRequest="135"
-                                WidthRequest="170">
+                            <Image>
                                 <Image.Source>
                                     <UriImageSource CacheValidity="7:00:00:00" Uri="{Binding Image, Mode=OneTime}" />
                                 </Image.Source>
                             </Image>
-                            <Grid BackgroundColor="#80000000" VerticalOptions="End">
-                                <Label
-                                    Margin="0,0,0,5"
-                                    FontAttributes="Bold"
-                                    FontSize="Subtitle"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{Binding Name, Mode=OneTime}"
-                                    TextColor="WhiteSmoke" />
+                            <Grid Style="{StaticResource GridTitle}">
+                                <Label Style="{StaticResource LabelTitle}" Text="{Binding Name, Mode=OneTime}" />
                             </Grid>
                         </Grid>
                     </Frame>
@@ -196,42 +93,44 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Label
-            Grid.Row="3"
-            FontAttributes="Bold"
-            FontSize="22"
-            Text="Lastest" />
 
-        <CollectionView
-            Grid.Row="4"
-            ItemsLayout="HorizontalGrid, 2"
-            ItemsSource="{Binding Lastest, Mode=OneTime}">
+        <Grid
+            Grid.Row="3"
+            HorizontalOptions="Start"
+            RowDefinitions="38,1">
+            <Label
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="Lastest"
+                TextColor="{StaticResource NavBar}" />
+            <Line
+                Grid.Row="1"
+                Stroke="{StaticResource NavBar}"
+                X1="200" />
+            <Line
+                Grid.Row="1"
+                Stroke="{StaticResource NavBar}"
+                TranslationY="2.1"
+                X1="200" />
+            <Line
+                Grid.Row="1"
+                Stroke="{StaticResource NavBar}"
+                TranslationY="3"
+                X1="200" />
+        </Grid>
+
+        <CollectionView Grid.Row="4" ItemsSource="{Binding Lastest, Mode=OneTime}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="Models:Cocktail">
-                    <Frame
-                        Margin="5"
-                        Padding="0"
-                        BorderColor="Transparent"
-                        CornerRadius="14"
-                        HeightRequest="135"
-                        WidthRequest="170">
+                    <Frame>
                         <Grid>
-                            <Image
-                                Aspect="Center"
-                                HeightRequest="135"
-                                WidthRequest="170">
+                            <Image>
                                 <Image.Source>
                                     <UriImageSource CacheValidity="7:00:00:00" Uri="{Binding Image, Mode=OneTime}" />
                                 </Image.Source>
                             </Image>
-                            <Grid BackgroundColor="#80000000" VerticalOptions="End">
-                                <Label
-                                    Margin="0,0,0,5"
-                                    FontAttributes="Bold"
-                                    FontSize="Subtitle"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{Binding Name, Mode=OneTime}"
-                                    TextColor="WhiteSmoke" />
+                            <Grid Style="{StaticResource GridTitle}">
+                                <Label Style="{StaticResource LabelTitle}" Text="{Binding Name, Mode=OneTime}" />
                             </Grid>
                         </Grid>
                     </Frame>
