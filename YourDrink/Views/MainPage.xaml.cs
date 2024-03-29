@@ -9,6 +9,17 @@ public partial class MainPage : ContentPage
     {
         BindingContext = _ViewModel = vm;
         InitializeComponent();
+
+        var screenMetrics = DeviceDisplay.MainDisplayInfo;
+
+        if (DeviceInfo.Idiom == DeviceIdiom.Tablet)
+        {
+            ColletionMostPopular.ItemsLayout = ColletionLastest.ItemsLayout = new GridItemsLayout(3, ItemsLayoutOrientation.Horizontal);
+        }
+        else if (DeviceInfo.Idiom == DeviceIdiom.Phone && screenMetrics.Height < 1940)
+        {
+            ColletionMostPopular.ItemsLayout = ColletionLastest.ItemsLayout = new GridItemsLayout(1, ItemsLayoutOrientation.Horizontal);
+        }
     }
 
 

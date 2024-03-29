@@ -11,20 +11,17 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="CollectionView">
-                <Setter Property="ItemsLayout" Value="{OnIdiom 'HorizontalGrid, 2', Tablet='HorizontalGrid, 3'}" />
+                <Setter Property="ItemsLayout" Value="HorizontalGrid, 2" />
             </Style>
             <Style TargetType="Frame">
                 <Setter Property="Margin" Value="5" />
                 <Setter Property="Padding" Value="0" />
-                <!--<Setter Property="BorderColor" Value="Gray" />-->
                 <Setter Property="CornerRadius" Value="14" />
-                <Setter Property="HeightRequest" Value="118" />
-                <Setter Property="WidthRequest" Value="140" />
+                <Setter Property="HeightRequest" Value="135" />
+                <Setter Property="WidthRequest" Value="170" />
             </Style>
             <Style TargetType="Image">
-                <Setter Property="Aspect" Value="Center" />
-                <Setter Property="HeightRequest" Value="118" />
-                <Setter Property="WidthRequest" Value="140" />
+                <Setter Property="Aspect" Value="AspectFill" />
             </Style>
             <Style x:Key="GridTitle" TargetType="Grid">
                 <Setter Property="BackgroundColor" Value="#80000000" />
@@ -44,11 +41,7 @@
         Padding="10,0"
         RowDefinitions="auto,auto,*,auto,*"
         RowSpacing="5">
-        <!--<Label
-            Margin="-10,-10,-10,10"
-            BackgroundColor="lightGray"
-            FontAttributes="Bold"
-            FontSize="22" />-->
+
         <SearchBar HorizontalOptions="Start" />
 
         <Grid Grid.Row="1" RowDefinitions="38,1">
@@ -74,10 +67,13 @@
         </Grid>
 
 
-        <CollectionView Grid.Row="2" ItemsSource="{Binding MostPopulars, Mode=OneTime}">
+        <CollectionView
+            x:Name="ColletionMostPopular"
+            Grid.Row="2"
+            ItemsSource="{Binding MostPopulars, Mode=OneTime}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="Models:Cocktail">
-                    <Frame>
+                    <Frame HeightRequest="135" WidthRequest="170">
                         <Grid>
                             <Image>
                                 <Image.Source>
@@ -119,7 +115,10 @@
                 X1="200" />
         </Grid>
 
-        <CollectionView Grid.Row="4" ItemsSource="{Binding Lastest, Mode=OneTime}">
+        <CollectionView
+            x:Name="ColletionLastest"
+            Grid.Row="4"
+            ItemsSource="{Binding Lastest, Mode=OneTime}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="Models:Cocktail">
                     <Frame>

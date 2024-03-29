@@ -16,6 +16,9 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty]
     ObservableCollection<Cocktail>? _Lastest;
 
+    [ObservableProperty]
+    ItemsLayout _ItemsLayout = new GridItemsLayout(2, ItemsLayoutOrientation.Horizontal);//"HorizontalGrid, 2";
+
     readonly HttpService httpService;
     public MainViewModel(HttpService httpService)
     {
@@ -33,7 +36,6 @@ public partial class MainViewModel : ObservableObject
             _Lastest = new ObservableCollection<Cocktail>(lastestData.drinks);
 
         }).Wait();
-
     }
 
 
