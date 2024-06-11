@@ -1,4 +1,5 @@
-﻿using YourDrink.ViewModels;
+﻿using YourDrink.Models;
+using YourDrink.ViewModels;
 
 namespace YourDrink.Views;
 
@@ -20,6 +21,29 @@ public partial class MainPage : ContentPage
         {
             ColletionMostPopular.ItemsLayout = ColletionLastest.ItemsLayout = new GridItemsLayout(1, ItemsLayoutOrientation.Horizontal);
         }
+    }
+
+    private void ColletionMostPopular_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+
+    }
+
+    private async void TappedMostPopularCocktail(object sender, TappedEventArgs e)
+    {
+        var id = e.Parameter?.ToString();
+        Cocktail cocktail = _ViewModel.MostPopulars.FirstOrDefault(x => x.IdDrink == id);
+
+        if (cocktail == default)
+            return;
+
+        //Shell.Current.GoToAsync($"//{nameof(CocktailPage)}");
+        var navigationParameter = new ShellNavigationQueryParameters
+        {
+            { "Cocktail", cocktail }
+        };
+        await Shell.Current.GoToAsync($"{nameof(CocktailPage)}", navigationParameter);
+
+
     }
 
 

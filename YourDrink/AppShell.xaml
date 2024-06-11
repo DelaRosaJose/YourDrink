@@ -7,18 +7,20 @@
     Title="YourDrink"
     Shell.FlyoutBehavior="Disabled">
 
-    <!--<ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />-->
-
     <ShellItem>
-        <Tab Title="For You">
+        <Tab Title="Recomented">
 
             <ShellContent
                 Title="Home"
                 ContentTemplate="{DataTemplate local:MainPage}"
-                Route="MainPage" />
+                Route="MainPage">
+                <ShellContent.Icon>
+                    <FontImageSource
+                        FontFamily="GoogleFontOutline"
+                        Glyph="{StaticResource Arrow_back}"
+                        Color="Black" />
+                </ShellContent.Icon>
+            </ShellContent>
         </Tab>
         <Tab Title="All">
             <ShellContent
@@ -30,9 +32,12 @@
             <ShellContent
                 Title="Home"
                 ContentTemplate="{DataTemplate local:MainPage}"
+                Icon="arrow_left.png"
                 Route="MainPage" />
         </Tab>
 
     </ShellItem>
+
+    <!--<ShellContent ContentTemplate="{DataTemplate local:CocktailPage}" Route="CocktailPage"  />-->
 
 </Shell>

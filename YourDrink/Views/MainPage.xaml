@@ -70,10 +70,15 @@
         <CollectionView
             x:Name="ColletionMostPopular"
             Grid.Row="2"
-            ItemsSource="{Binding MostPopulars, Mode=OneTime}">
+            ItemsSource="{Binding MostPopulars, Mode=OneTime}"
+            SelectionChanged="ColletionMostPopular_SelectionChanged"
+            SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="Models:Cocktail">
                     <Frame HeightRequest="135" WidthRequest="170">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer CommandParameter="{Binding IdDrink, Mode=OneTime}" Tapped="TappedMostPopularCocktail" />
+                        </Frame.GestureRecognizers>
                         <Grid>
                             <Image>
                                 <Image.Source>

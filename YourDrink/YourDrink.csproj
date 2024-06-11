@@ -66,13 +66,36 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
+	  <None Remove="Resources\Fonts\MaterialIcons-Regular.ttf" />
+	  <None Remove="Resources\Fonts\MaterialIconsOutlined-Regular.otf" />
+	  <None Remove="Resources\Raw\back_button.json" />
+	  <None Remove="Resources\Raw\left_custom_icon.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="8.0.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.6" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.6" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.21" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.21" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
-		<PackageReference Include="MonkeyCache.FileStore" Version="2.0.1" />
+		<PackageReference Include="MonkeyCache.FileStore" Version="2.1.1" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\CocktailPage.xaml.cs">
+	    <DependentUpon>CocktailPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Resources\Styles\IconTemplate.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CocktailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
